@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AttachOnce demo</title>
+    <style>
+      :root { color-scheme: dark; font-family: ui-sans-serif, system-ui, sans-serif; }
+      body { max-width: 760px; margin: 0 auto; padding: 56px 24px; background: #17120c; color: #fff6e5; }
+      .eyebrow { color: #ffb45d; font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+      h1 { max-width: 650px; font-size: clamp(38px, 7vw, 72px); line-height: .98; letter-spacing: -.06em; }
+      p { color: #d6c8b4; line-height: 1.6; }
+      .card { margin-top: 34px; padding: 22px; border: 1px solid #5a4226; border-radius: 18px; background: #21180e; }
+      input[type=file] { display: block; width: 100%; box-sizing: border-box; margin: 18px 0; padding: 14px; border: 1px dashed #9c7442; border-radius: 12px; color: #ffcf95; font: inherit; }
+      #result { min-height: 24px; color: #9fe0b2; overflow-wrap: anywhere; }
+      code { color: #ffcf95; }
+    </style>
+  </head>
+  <body>
+    <p class="eyebrow">AttachOnce demo</p>
+    <h1>One file. This tab. One attachment.</h1>
+    <p>Load the unpacked extension, enable it on this tab, choose a harmless fake file, then click Attach once in the floating panel.</p>
+    <section class="card">
+      <p>This is the page's native upload control. AttachOnce does not submit it.</p>
+      <label for="demo-upload">Demo upload</label>
+      <input id="demo-upload" name="demo-upload" type="file" aria-label="Demo upload" />
+      <p id="result" aria-live="polite">No file received.</p>
+    </section>
+    <script>
+      document.querySelector("#demo-upload").addEventListener("change", (event) => {
+        const file = event.currentTarget.files[0];
+        document.querySelector("#result").textContent = file
+          ? `Native page input received: ${file.name} (${file.size} bytes).`
+          : "No file received.";
+      });
+    </script>
+    <script src="/dist/content.js"></script>
+  </body>
+</html>

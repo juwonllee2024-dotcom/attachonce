@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "AttachOnce",
+  "version": "0.1.0",
+  "description": "Attach one explicitly selected local file to the current tab, once.",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_title": "Enable AttachOnce",
+    "default_popup": "popup.html"
+  }
+}
